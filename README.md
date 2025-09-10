@@ -5,18 +5,12 @@
 
 ## 1. 
 ```mermaid
-sequenceDiagram
-    participant C as Client (Browser)
-    participant U as urls.py
-    participant V as views.py
-    participant M as models.py
-    participant T as templates/ (HTML)
-
-    C->>U: HTTP Request (e.g., GET /home/)
-    U->>V: Match URL pattern → Call view function
-    V->>M: (Optional) Query/Update database
-    M-->>V: Return data (QuerySet / object)
-    V->>T: Pass context data to template
-    T-->>V: Rendered HTML page
-    V-->>C: HTTP Response (HTML)
+graph TD
+    A[Client (Browser)] -->|HTTP Request| B[urls.py<br>(URL Dispatcher)]
+    B -->|Match URL pattern| C[views.py<br>(View Function)]
+    C -->|Optional: Query DB| D[models.py<br>(Database Models)]
+    D -->|Return data| C
+    C -->|Pass context| E[templates/<br>HTML Files]
+    E -->|Render HTML| C
+    C -->|HTTP Response| F[Client (Browser)]
 ```
