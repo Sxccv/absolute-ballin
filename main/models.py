@@ -10,4 +10,4 @@ class Product(models.Model):
     thumbnail = models.URLField()
     category = models.CharField(max_length=20)
     is_featured = models.BooleanField(default=False)
-
+    
