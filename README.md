@@ -65,22 +65,30 @@ Menurut saya, tergantung. Json lebih populer dibandingkan XML untuk berbagai ala
 Method ```is_valid()``` berguna untuk melakukan validasi data pada form yang disubmit oleh klien dan dikaitkan dengan model atau vocabulary dari developler. Fungsi dari method tersebut adalah untuk memastikan bahwa data yang akan dimasukkan atau digunakan dari form sesuai dengan format yang sudah ditentukan pada database oleh developer agar tidak menimbulkan error pada database ataupun bug pada platform. 
 
 ## 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
-CSRF atau _Cross Site Request Forgeries_ adalah sebuah serangan siber yang 
+CSRF atau _Cross Site Request Forgeries_ adalah sebuah serangan siber yaitu ketika ada pihak yang melakukan request pada aplikasi web. Serangan tersebut dapat berakibatkan bocornya data dari database, maupun kerugian pada end-user. Serangan dapat berupa Http methods seperti POST, GET, PUT, Script, atau yang lain, tergantung vektor serangan.
 
 ## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
-## 6. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-
 ### a. Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
-
+Tambahkan fungsi ```show_xml```, ```show_xml_by_id```,```show_json```,```show_json_by_id``` yang mengembalikan HttpResponse yang diberi oleh server dengan sudah dilakukan serialization ke format XML/JSON.
 
 ### b. Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin a.
+Menambahkan path untuk masing-masing views yang telah ditambahkan pada list ```urlpatterns``` pada ```urls.py```
 
 ### c. Membuat halaman yang menampilkan data objek model yang memiliki tombol "Add" yang akan redirect ke halaman form, serta tombol "Detail" pada setiap data objek model yang akan menampilkan halaman detail objek. 
+Melakukan edit pada ```home.html``` untuk menambahkan ```button``` untuk melakukan redirect ke halaman ```add_product``` dan ke ```view_product``` yang dispesifikasikan di urls.py
 
 ### d. Membuat halaman form untuk menambahkan objek model pada app sebelumnya.
+Buat ```add_product.html```, sambungkan pada ```views.py``` dan form pada ```forms.py```
 
 ### e. Membuat halaman yang menampilkan detail dari setiap data objek model.
+Buat ```view_product.html```, sambungkan pada ```views.py``` dan data tergantung id
 
+## 6. Apakah ada feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan?
+tidak
 
-## 7. Apakah ada feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan?
+## Postman screenshots
+![viewXML](xml.jpeg)
+![viewXMLID](xmlid.jpeg)
+![viewJSON](json.jpeg)
+![viewJSONID](jsonid.jpeg)
