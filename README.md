@@ -1,7 +1,7 @@
 ### Website: https://randuichi-touya-absoluteballin.pbp.cs.ui.ac.id/
 ### Repo: https://github.com/Sxccv/absolute-ballin/
 
-# Checklist
+# Tugas 2
 
 ## 1. Membuat sebuah proyek Django baru.
 Pertama, buatlah folder baru untuk direktori utama, yaitu absolute-ballin. Selanjutnya, saya menginisialisasi venv python serta requirements yang saya butuhkan untuk proyek dengan ```requirements.txt```, setup ```.env``` dan ```.env.prod```. Langkah terakhir, saya menjalankan ```django-admin startproject absolute_ballin .``` untuk membuat project Django.
@@ -52,3 +52,35 @@ Menurut saya, Django berguna sebagai titik introduksi pada yang belum sebelumnya
 
 ## 13. Apakah ada feedback untuk asisten dosen tutorial 1 yang telah kamu kerjakan sebelumnya?
 tidak, terimakasih asdos semangat!
+
+# Tugas 3
+
+## 1.  Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Karena data delivery adalah suatu process yang perlu agar dapat memberikan informasi dan data yang paling _up-to-date_ kepada client yang memakai platform kita. Dengan sistem data delivery yang baik, platform dapat mendukung berbagai fungsionalitas secara aman dengan waktu yang singkat untuk pengalaman user yang lancar.
+
+## 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+Menurut saya, tergantung. Json lebih populer dibandingkan XML untuk berbagai alasan. XML dan JSON memiliki format yang berbeda, dengan JSON memiliki format yang lebih mudah dibaca manusia maupun mesin, lebih fleksibel, dan lebih mudah digunakan dengan berbagai support API. Walaupun begitu, XML memiliki beberapa fitur yang tidak dimiliki JSON, seperti namespaces yang memungkinkan pembacaan XML tergantung URI, dan schema dimana dapat mengatur format untuk dokumen XML dan pihak lain dapat memverifikasi apakah XML yang dikirim cocok dengan format yang sudah diatur.
+
+## 3. Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+Method ```is_valid()``` berguna untuk melakukan validasi data pada form yang disubmit oleh klien dan dikaitkan dengan model atau vocabulary dari developler. Fungsi dari method tersebut adalah untuk memastikan bahwa data yang akan dimasukkan atau digunakan dari form sesuai dengan format yang sudah ditentukan pada database oleh developer agar tidak menimbulkan error pada database ataupun bug pada platform. 
+
+## 4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+CSRF atau _Cross Site Request Forgeries_ adalah sebuah serangan siber yang 
+
+## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+## 6. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+### a. Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
+
+
+### b. Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin a.
+
+### c. Membuat halaman yang menampilkan data objek model yang memiliki tombol "Add" yang akan redirect ke halaman form, serta tombol "Detail" pada setiap data objek model yang akan menampilkan halaman detail objek. 
+
+### d. Membuat halaman form untuk menambahkan objek model pada app sebelumnya.
+
+### e. Membuat halaman yang menampilkan detail dari setiap data objek model.
+
+
+## 7. Apakah ada feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan?

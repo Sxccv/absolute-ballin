@@ -1,13 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 <h1>get ready for ABSOLUTE BALLIN</h1>
 <h5>Name: </h5> <p>{{ name }}<p>
 <h5>Class: </h5> <p>{{ class }}</p>
-</body>
-</html>
+
+<a href="{% url 'main:add_product' %}">
+    <button>+ Add Product</button>
+</a>
+
+<hr>
+
+{% if not product_list %}
+<p>Belum ada data produk.</p>
+{% else %}
+
+{% for product in product_list %}
+<div>
+  <h2><a href="{% url 'main:view_product' product.id %}">{{ product.name }}</a></h2>
+
+  <h4>Price : {{ product.price }}</h4>
+  <h4>Stock : {{ product.stock }}</h4>
+  <p><b>{{ product.category }}</b>
+    {% if product.is_featured %}
+    <b>ONGOING FEATURE!</b>
+    {% endif %}
+  </p>
+
+
+  {% if product.thumbnail %}
+  <img src="{{ product.thumbnail }}" alt="thumbnail" width="150" height="100">
+  <br />
+  {% endif %}
+
+  <p><a href="{% url 'main:view_product' product.id %}"><button>Details</button></a></p>
+</div>
+
+<hr>
+{% endfor %}
+
+{% endif %}
+
+{% endblock content %}

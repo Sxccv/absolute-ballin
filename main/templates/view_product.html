@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<p><a href="{% url 'main:home' %}"><button>← Back to Product</button></a></p>
+
+<h1>{{ product.name }}</h1>
+{% if product.thumbnail %}
+<img src="{{ product.thumbnail }}" alt="product thumbnail" width="300">
+<br /><br />
+{% endif %}
+<h3>Price: {{ product.price }}</h3>
+<h3>Stock: {{ product.stock }}</h3>
+
+{% if product.player %}
+<h5>Player: {{ product.player }}</h5>
+{% endif %}
+
+{% if product.club %}
+<h5>Club  : {{ product.club }}</h5>
+{% endif %}
+
+<p>{{ product.description }}</p>
+
+{% endblock content %}
