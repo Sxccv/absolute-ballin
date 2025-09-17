@@ -34,7 +34,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "randuichi-touya-footballnews.pbp.cs.ui.ac.id","randuichi-touya-absoluteballin.pbp.cs.ui.ac.id"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://randuichi-touya-footballnews.pbp.cs.ui.ac.id/"
+    "https://randuichi-touya-absoluteballin.pbp.cs.ui.ac.id/"
 ]
 
 # Application definition
