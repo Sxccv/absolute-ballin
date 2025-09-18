@@ -12,4 +12,3 @@ class Product(models.Model):
     is_featured = models.BooleanField(default=False,blank=True,null=True)
     player = models.CharField(max_length=255,blank=True,null=True)
     club = models.CharField(max_length=255,blank=True,null=True)
-    
