@@ -6,6 +6,7 @@
 {% if product.thumbnail %}
 <img src="{{ product.thumbnail }}" alt="product thumbnail" width="300">
 <br /><br />
+<hr>
 {% endif %}
 <h3>Price: {{ product.price }}</h3>
 <h3>Stock: {{ product.stock }}</h3>
@@ -17,6 +18,8 @@
 {% if product.club %}
 <h5>Club  : {{ product.club }}</h5>
 {% endif %}
+
+<hr>
 
 <p>{{ product.description }}</p>
 
