@@ -96,8 +96,10 @@ tidak
 # Tugas 4
 
 ## Apa itu Django AuthenticationForm? Jelaskan juga kelebihan dan kekurangannya
+Django AuthenticationForm adalah 
 
 ## Apa perbedaan antara autentikasi dan otorisasi? Bagaiamana Django mengimplementasikan kedua konsep tersebut?
+Authentikasi adalah proses untuk menverifikasi siapa itu user dengan login, otorisasi adlaha proses memverifikasi akses-akses dan permission user tersebut.
 
 ## Apa saja kelebihan dan kekurangan session dan cookies dalam konteks menyimpan state di aplikasi web?
 

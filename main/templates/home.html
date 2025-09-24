@@ -9,7 +9,24 @@
     <button>+ Add Product</button>
 </a>
 
+{% if logged_in_user %}
+  <h5>Logged in: {{ logged_in_user.username }}</h5>
+{% endif %}
+
+<p>Sesi terakhir login: {{ last_login }}</p>
+
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+
 <hr>
+
+<a href="?filter=all">
+    <button type="button">All Products</button>
+</a>
+<a href="?filter=my">
+    <button type="button">My Products</button>
+</a> 
 
 {% if not product_list %}
 <p>Belum ada data produk.</p>
@@ -23,14 +40,18 @@
   <a href="{% url 'main:view_product' product.id %}"><img src="{{ product.thumbnail }}" alt="thumbnail" width="150" height="100"></a>
   <br />
   {% endif %}
-
+  <h4>{% if product.is_featured %}
+    <b>ONGOING FEATURE!</b>
+    {% endif %}</h4>
   <h4>Price : {{ product.price }}</h4>
   <h4>Stock : {{ product.stock }}</h4>
   <p><b>Category: {{ product.category }}</b>
-    {% if product.is_featured %}
-    <b>ONGOING FEATURE!</b>
-    {% endif %}
   </p>
+  {% if product.user %}
+    <p>Seller: {{ product.user.username }}</p>
+  {% else %}
+      <p>Seller: Untrusted</p>
+  {% endif %}
   <p><a href="{% url 'main:view_product' product.id %}"><button>Details</button></a></p>
 </div>
 
