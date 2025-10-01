@@ -32,6 +32,16 @@ def home(request):
 
     return render(request, "home.html", data)
 
+@login_required(login_url='/login')
+def view_product(request, id):
+    product = get_object_or_404(models.Product, pk=id)
+
+    context = {'product': product}
+
+    return render(request,"view_product.html",context)
+
+# Product management
+
 @login_required(login_url='/login') 
 def add_product(request):
     form = forms.ProductForm(request.POST or None)
@@ -45,13 +55,25 @@ def add_product(request):
     context = {'form' : form}
     return render(request,"add_product.html",context)
 
+@login_required(login_url='/login') 
+def edit_product(request, id):
+    prod = get_object_or_404(models.Product, pk=id)
+    form = forms.ProductForm(request.POST or None, instance=prod)
+    if form.is_valid() and request.method == 'POST':
+        form.save()
+        return redirect('main:home')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, "edit_product.html", context)
+
 @login_required(login_url='/login')
-def view_product(request, id):
-    product = get_object_or_404(models.Product, pk=id)
-
-    context = {'product': product}
-
-    return render(request,"view_product.html",context)
+def delete_product(request, id):
+    prod = get_object_or_404(models.Product, pk=id)
+    prod.delete()
+    return HttpResponseRedirect(reverse('main:home'))
 
 ## User Management
 def register(request):
@@ -110,8 +132,8 @@ def show_json(request):
 
 def show_json_by_id(request, product_id):
    try:
-       news_item = models.Product.objects.get(pk=product_id)
-       json_data = serializers.serialize("json", [news_item])
+       product_item = models.Product.objects.get(pk=product_id)
+       json_data = serializers.serialize("json", [product_item])
        return HttpResponse(json_data, content_type="application/json")
    except models.Product.DoesNotExist:
        return HttpResponse(status=404)

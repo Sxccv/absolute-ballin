@@ -119,5 +119,37 @@ Menggunakan fungsi register untuk membuat 2 akun baru, serta add product untuk m
 Dengan mengimport ```User``` dari ```django.contrib.auth.models``` untuk dimasukkan kepada datafield user pada Product model dengan tipe data ```ForeignKey``` untuk menghubungkan kedua database tersebut.
 
 ### 4. Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last_login pada halaman utama aplikasi.
-[akun1](akun1.jpeg)
-[akun2](akun2.jpeg)
+![akun1](akun1.jpeg)
+![akun2](akun2.jpeg)
+
+# Tugas 5.
+
+ ## 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+ 
+ ## 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+ 
+ ## 3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+ 
+ ## 4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+ 
+ ## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+
+ ### 1. Implementasikan fungsi untuk menghapus dan mengedit product.
+Membuat fungsi edit_product pada views.py yang akan membuat ProductForm dengan argument instance=prod dimana prod adalah objek dengan id yang dispesifikasi pada url dan adanya argument tersebut adalah cara dari ModelForm Django untuk melakukan perubahan pada objek yang sudah ada. ProductForm ini terus dipassing ke edit_product.html yang akan menampilkan form. Selain itu untuk menghapaus product, dibuat fungsi delete_news yang akan mendapatkan product lalu menghapusnya dengan builtin method .delete()
+
+ ### 2. Kustomisasi desain pada template HTML yang telah dibuat pada tugas-tugas sebelumnya menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut:
+ 
+
+ #### a. Kustomisasi halaman login, register, tambah product, edit product, dan detail product semenarik mungkin.
+
+ #### b. Kustomisasi halaman daftar product menjadi lebih menarik dan responsive. Kemudian, perhatikan kondisi berikut:
+
+ ##### b.1 Jika pada aplikasi belum ada product yang tersimpan, halaman daftar product akan menampilkan gambar dan pesan bahwa belum ada product yang terdaftar.
+
+ ##### b.2 Jika sudah ada product yang tersimpan, halaman daftar product akan menampilkan detail setiap product dengan menggunakan card (tidak boleh sama persis dengan desain pada Tutorial!).
+
+ #### c. Untuk setiap card product, buatlah dua buah button untuk mengedit dan menghapus product pada card tersebut!
+
+ #### d. Buatlah navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop.
+
+
