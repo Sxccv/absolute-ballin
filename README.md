@@ -125,31 +125,46 @@ Dengan mengimport ```User``` dari ```django.contrib.auth.models``` untuk dimasuk
 # Tugas 5.
 
  ## 1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
- 
+ Priority of CSS selectors adalah:
+ 1. Inline Styles
+ 2. Id Selectors
+ 3. Classes, atribut, dan pseudo-class
+ 4. Elements, pseudo-elements
+ 5. Universal selector dan :Where()
+
+ ref: https://www.w3schools.com/css/css_specificity.asp
+
  ## 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+ Responsive design adalah konsep penting karena yang mengakses aplikasi web tidak hanya user desktop atau mobile saja tetapi keduanya. Selain itu, banyak variasi dari screen user, mau itu desktop atau mobile. Oleh karena itu, penting bagi developer untuk menggunakan responsive design agar dapat mencakup paling banyak user yang mungkin mendatangi situs web yang di develop. Contoh aplikasi yang menggunakan responsive design adalah hampir seluruh website modern karena sudah menjadi ide yang diadopsi secara besar seperti pada youtube, twitter, atau website saya. Contoh untuk aplikasi yang belum biasanya adalah webpage 1.0 yang belum dapat diakses oleh device mobile pada waktu ia di develop.
  
  ## 3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+ Margin, Border, dan Padding adalah tiga lapisan dari Model Kotak CSS yang berfungsi mengatur tampilan dan jarak antar elemen HTML. Padding adalah ruang internal, berfungsi sebagai bantalan antara konten elemen dengan garis border, padding menambah ukuran di dalam elemen. Sementara itu, Margin adalah ruang eksternal di luar border, dan berfungsi mengendalikan jarak pemisah antara satu elemen dengan elemen HTML di sekitarnya.
  
  ## 4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
- 
+Flexbox dan Grid Layout adalah sistem yang digunakan untuk menyusun elemen secara responsif. Flexbox adalah sistem satu dimensi, yang ideal digunakan untuk menyusn item, ruang, atau komponen UI kecil. Sebaliknya, Grid Layout adalah sistem dua dimensi yang sangat cocok untuk menyusun tata letak struktur halaman web secara keseluruhan, memungkinkan penempatan elemen di lokasi spesifik pada perpotongan baris dan kolom.
+
  ## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
 
  ### 1. Implementasikan fungsi untuk menghapus dan mengedit product.
 Membuat fungsi edit_product pada views.py yang akan membuat ProductForm dengan argument instance=prod dimana prod adalah objek dengan id yang dispesifikasi pada url dan adanya argument tersebut adalah cara dari ModelForm Django untuk melakukan perubahan pada objek yang sudah ada. ProductForm ini terus dipassing ke edit_product.html yang akan menampilkan form. Selain itu untuk menghapaus product, dibuat fungsi delete_news yang akan mendapatkan product lalu menghapusnya dengan builtin method .delete()
 
  ### 2. Kustomisasi desain pada template HTML yang telah dibuat pada tugas-tugas sebelumnya menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut:
- 
 
  #### a. Kustomisasi halaman login, register, tambah product, edit product, dan detail product semenarik mungkin.
+ Menggunakan tailwind dan class-classnya untuk merombak html login, register, add_product, dan edit_product agar mengikuti css  yang didefinisikan di global.css.
 
  #### b. Kustomisasi halaman daftar product menjadi lebih menarik dan responsive. Kemudian, perhatikan kondisi berikut:
+Menggunakan tailwind dan class-classnya untuk merombak html login, register, add_product, dan edit_product agar mengikuti css  yang didefinisikan di global.css. Selain itu, agar responsif maka didefinisikan beberapa elemen html dengan mobile-menu guna spesifikasi elemen pada device mobile.
 
  ##### b.1 Jika pada aplikasi belum ada product yang tersimpan, halaman daftar product akan menampilkan gambar dan pesan bahwa belum ada product yang terdaftar.
+Menambahkan checking pada home.htlm yang jika tidak ada product yang memenuhi filter maka akan menampilkan image no-product.png di static folder di direktori utama.
 
  ##### b.2 Jika sudah ada product yang tersimpan, halaman daftar product akan menampilkan detail setiap product dengan menggunakan card (tidak boleh sama persis dengan desain pada Tutorial!).
+Membuat product_card.html yang guna untuk menampilkan detail produk dalam cards dengan dipanggil oleh home.html dengan include. Detail yang ditampilkan didefinisikan pada product_card.html dan product_list dimasukkan dari home.html. 
 
  #### c. Untuk setiap card product, buatlah dua buah button untuk mengedit dan menghapus product pada card tersebut!
+Menggunakan elemen button untuk melakukan routing ke fungis edit_product dan delete_product yang terhubungkan dengan fungsi yang tadi dibuat. 
 
  #### d. Buatlah navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop.
-
+membuat navbar.html yang di include oleh beberapa html lainnya guna dapat di display di bagian atas screen. Agar responsif gunakan mobile-menu class untuk spesifikasi device mobile.
 
