@@ -14,6 +14,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.utils.html import strip_tags
+from django.views.decorators.csrf import csrf_protect
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -266,21 +267,22 @@ def login_ajax(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            
-            # Prepare a success response with a redirect URL
             response_data = {
                 'status': 'success',
                 'redirect_url': reverse('main:home')
             }
             response = JsonResponse(response_data)
-            
-            # Set the last_login cookie on the response
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
         else:
             return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
     return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
 
+
+@require_POST
+@csrf_protect
 def logout_ajax(request):
     logout(request)
-    return JsonResponse({"success": True, "redirect_url": reverse("main:login")})
+    response = JsonResponse({"success": True, "redirect_url": reverse("main:login")})
+    response.delete_cookie('last_login')
+    return response
