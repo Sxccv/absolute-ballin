@@ -168,3 +168,19 @@ Menggunakan elemen button untuk melakukan routing ke fungis edit_product dan del
  #### d. Buatlah navigation bar (navbar) untuk fitur-fitur pada aplikasi yang responsive terhadap perbedaan ukuran device, khususnya mobile dan desktop.
 membuat navbar.html yang di include oleh beberapa html lainnya guna dapat di display di bagian atas screen. Agar responsif gunakan mobile-menu class untuk spesifikasi device mobile.
 
+# Tugas 6.
+
+## Apa perbedaan antara synchronous request dan asynchronous request?
+Synchronous request dieksekusi secara sekuensial sedangkan asynchronous request berjalan independen dari code yang lain. Ini berarti synchronous request harus tunggu untuk code sebelumnya dieksekusi, kondisi yang mungkin kurang ideal untuk sebagian fitur. Asynchronous request berguna untuk melakukan dan mulai proses/fitur secara _concurrent_ atau _paralel_ dimana tidak harus menunggu code sebelumnya. Ini memungkinkan web yang lebih responsif dan meningkatkan performa.
+
+## Bagaimana AJAX bekerja di Django (alur request–response)?
+Ketika suatu _event_ terjadi seperti klik tombol, sebuah listener JavaScript akan menanggapi _event_ tersebut sebelum dapat menjadi synchronous request. Script ini lalu akan memproses request itu dengan API fetch yang mendapatkan response dari suatu URL, yang akan mengembalikannya kepada script. Response ini berbentuk Json dan akan lalu diterima oleh browser klien, dan akan ada DOM yang mengupdate HTML klien secara dinamis.
+
+## Apa keuntungan menggunakan AJAX dibandingkan render biasa di Django?
+AJAX membuat website liebih cepat dan responsif karena tidak perlu reload seluruh halaman, atau berpindah dari halaman tersebut hanya untuk melakukan sebuah aksi seperti refresh. Dengan AJAX, hanya bagian tertentu saja dapat berubah, yang membuat prosesnya lebih interaktif dan modern.
+
+## Bagaimana cara memastikan keamanan saat menggunakan AJAX untuk fitur Login dan Register di Django?
+Untuk menjaga keamanan saat menggunakan AJAX, perlu menyertakan CSRF token pada setiap request POST, melakukan validasi input di sisi server, menggunakan HTTPS agar data login tidak bocor, serta tidak mengembalikan data sensitif dalam response JSON. 
+
+## Bagaimana AJAX mempengaruhi pengalaman pengguna (User Experience) pada website?
+AJAX mempengaruhi UX pada website dengan asynchronous requestnya. AJAX tidak hanya dapat membuat UX yang lebih mulus, akan tetapi juga dapat membuat website lebih cepat. AJAX juga dapat memungkinkan adanya perubahan dinamis pada konten HTML tanpa harus reload pagenya. 

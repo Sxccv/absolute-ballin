@@ -12,8 +12,11 @@
           <a href="/" class="text-white hover:text-purple-200 font-medium transition-colors">
             Home
           </a>
-          <a href="{% url 'main:add_product' %}" class="text-white hover:text-purple-200 font-medium transition-colors">
-            Add Product
+          <!-- <a href="{% url 'main:add_product' %}" class="text-white hover:text-purple-200 font-medium transition-colors">
+            + Add Product
+          </a> -->
+          <a onclick="showModal()" class="text-white hover:text-purple-200 font-medium transition-colors">
+            + Add Product
           </a>
         </div>
         
@@ -24,7 +27,7 @@
               <div class="text-sm font-medium text-pink-400">{{ name|default:user.username }}</div>
               <div class="text-xs text-white">{{ npm|default:"Student" }} - {{ class|default:"Class" }}</div>
             </div>
-            <a href="{% url 'main:logout' %}" class="text-red-600 hover:text-red-700 font-medium transition-colors">
+            <a onclick="showToast('logged Out', '', 'error')" href="{% url 'main:logout' %}" class="text-red-600 hover:text-red-700 font-medium transition-colors">
               Logout
             </a>
           {% else %}
@@ -59,7 +62,7 @@
             Home
           </a>
           <a href="{% url 'main:add_product' %}" class="block text-gray-600 hover:text-gray-900 font-medium py-3 transition-colors">
-            Add Product
+            + Add Product
           </a>
         </div>
         

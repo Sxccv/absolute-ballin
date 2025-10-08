@@ -5,6 +5,7 @@
 {% endblock meta %}
 
 {% block content %}
+
 <div class="bg-gray-50 w-full min-h-screen flex items-center justify-center p-8">
   <div class="max-w-md w-full">
     <div class="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 form-style">
@@ -12,94 +13,79 @@
         <h1 class="text-2xl font-bold text-gray-900 mb-2">Sign In NOW</h1>
         <p class="text-gray-600">Welcome back to <span class="font-bold text-purple-600">ABSOLUTE</span> Ballin </p>
       </div>
+      
+      <div id="message-container" class="mb-6 space-y-2"></div>
 
-      <!-- Form Errors Display -->
-      {% if form.non_field_errors %}
-        <div class="mb-6">
-          {% for error in form.non_field_errors %}
-            <div class="px-4 py-3 rounded-md text-sm border bg-red-50 border-red-200 text-red-700">
-              {{ error }}
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
-
-      {% if form.errors %}
-        <div class="mb-6">
-          {% for field, errors in form.errors.items %}
-            {% if field != '__all__' %}
-              {% for error in errors %}
-                <div class="px-4 py-3 rounded-md text-sm border bg-red-50 border-red-200 text-red-700 mb-2">
-                  <strong>{{ field|title }}:</strong> {{ error }}
-                </div>
-              {% endfor %}
-            {% endif %}
-          {% endfor %}
-        </div>
-      {% endif %}
-
-      <form method="POST" action="" class="space-y-6">
+      <form id="login-form" method="POST" action="{% url 'main:login_ajax' %}" class="space-y-6">
         {% csrf_token %}
-        
         <div>
           <label for="username" class="block text-sm font-medium text-gray-700 mb-2">Username</label>
-          <input 
-            id="username" 
-            name="username" 
-            type="text" 
-            required 
-            class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 transition-colors" 
-            placeholder="Enter your username">
+          <input id="username" name="username" type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-md">
         </div>
-
         <div>
           <label for="password" class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-          <input 
-            id="password" 
-            name="password" 
-            type="password" 
-            required 
-            class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500 transition-colors" 
-            placeholder="Enter your password">
+          <input id="password" name="password" type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-md">
         </div>
-
-        <button 
-          type="submit" 
-          class="w-full bg-purple-600 text-white font-medium py-3 px-4 rounded-md hover:bg-purple-700 transition-colors">
+        <button type="submit" class="w-full bg-purple-600 text-white font-medium py-3 px-4 rounded-md hover:bg-purple-700">
           Sign In
         </button>
       </form>
-
-      <!-- Messages Display -->
-      {% if messages %}
-        <div class="mt-6">
-          {% for message in messages %}
-            <div 
-              class="
-                px-4 py-3 rounded-md text-sm border
-                {% if message.tags == 'success' %}
-                  bg-purple-50 border-purple-200 text-purple-700
-                {% elif message.tags == 'error' %}
-                  bg-red-50 border-red-200 text-red-700
-                {% else %}
-                  bg-gray-50 border-gray-200 text-gray-700
-                {% endif %}
-              ">
-              {{ message }}
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
-
+      
       <div class="mt-6 text-center pt-6 border-t border-gray-200">
         <p class="text-gray-500 text-sm">
           Don't have an account? 
-          <a href="{% url 'main:register' %}" class="text-purple-600 hover:text-purple-700 font-medium">
-            Register Now
-          </a>
+          <a href="{% url 'main:register' %}" class="text-purple-600 hover:text-purple-700 font-medium">Register Now</a>
         </p>
       </div>
     </div>
   </div>
 </div>
+{% include 'toast.html' %}
+<script>
+  const loginForm = document.getElementById('login-form');
+  const messageContainer = document.getElementById('message-container');
+
+  loginForm.addEventListener('submit', async function(event) {
+    event.preventDefault(); 
+
+    const formData = new FormData(loginForm);
+    const url = loginForm.getAttribute('action');
+    
+    messageContainer.innerHTML = '';
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        showToast('Logged in ', '', 'login')
+        setTimeout(() => {
+          window.location.href = data.redirect_url;
+        }, 2000);
+      } else {
+        displayErrors(data.errors);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      const errorMessage = `<div class="px-4 py-3 rounded-md text-sm border bg-red-50 border-red-200 text-red-700">An unexpected error occurred. Please try again.</div>`;
+      messageContainer.innerHTML = errorMessage;
+    }
+  });
+
+  function displayErrors(errors) {
+    if (errors['__all__']) {
+      errors['__all__'].forEach(error => {
+        const errorMessage = `<div class="px-4 py-3 rounded-md text-sm border bg-red-50 border-red-200 text-red-700">${error}</div>`;
+        messageContainer.insertAdjacentHTML('beforeend', errorMessage);
+      });
+    }
+  }
+</script>
 {% endblock content %}

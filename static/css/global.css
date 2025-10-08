@@ -45,3 +45,51 @@
     border-color: #f080ff;
     box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.1);
 }
+
+
+/* Defining colors I want to use for easy use */
+:root {
+/* this is for forms */
+--color-abf-1: #3d0066;
+--color-abf-2: #510087;
+--color-abf-3: #5c0099;
+--color-abf-4: #fdc500;
+--color-abf-5: #ffd500;
+/* This is for main */
+--color-abm-1: #1F1A3D;
+--color-abm-2: #6A0DAD;
+--color-abm-3: #A45DBB;
+--color-abm-4: #EAB8E4;
+--color-abm-5: #000000;
+}
+
+.text-abf-1 {
+color: var(--color-abf-1);
+}
+.text-abf-2 {
+color: var(--color-abf-2);
+}
+.text-abf-3 {
+color: var(--color-abf-3);
+}
+.text-abf-4 {
+color: var(--color-abf-4);
+}
+.text-abf-5 {
+color: var(--color-abf-5);
+}
+.text-abm-1 {
+color: var(--color-abm-1);
+}
+.text-abm-2 {
+color: var(--color-abm-2);
+}
+.text-abm-3 {
+color: var(--color-abm-3);
+}
+.text-abm-4 {
+color: var(--color-abm-4);
+}
+.text-abm-5 {
+color: var(--color-abm-5);
+}

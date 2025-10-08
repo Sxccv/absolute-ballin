@@ -15,6 +15,12 @@ urlpatterns = [
     path('login/',views.login_user,name='login'),
     path('logout/',views.logout_user,name='logout'),
     path('prod/<str:id>/edit',views.edit_product,name='edit_product'),
-    path('prod/<str:id>/delete',views.delete_product,name='delete_product')
+    path('prod/<str:id>/delete',views.delete_product,name='delete_product'),
+    path('create-news-ajax', views.add_product_ajax, name='add_product_ajax'),
+    path('edit-product-ajax/<str:id>/', views.edit_product_ajax, name='edit_product_ajax'),
+    path('delete-product-ajax/<str:id>/', views.delete_product_ajax, name='delete_product_ajax'),
+    path('register-ajax/', views.register_ajax, name='register_ajax'),
+    path('login-ajax/', views.login_ajax, name='login_ajax'),
+    path('logout-ajax/', views.logout_ajax, name='logout_ajax'),
 ]
 
