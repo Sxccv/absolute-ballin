@@ -23,5 +23,6 @@ urlpatterns = [
     path('login-ajax/', views.login_ajax, name='login_ajax'),
     path('logout-ajax/', views.logout_ajax, name='logout_ajax'),
     path('create-flutter/', views.add_product_flutter, name='add_product_flutter'),
+    path('proxy-image/', views.proxy_image, name='proxy_image'),
 ]
 
