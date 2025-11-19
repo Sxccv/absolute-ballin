@@ -15,6 +15,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.utils.html import strip_tags
 from django.views.decorators.csrf import csrf_protect
+import json
+from django.contrib.auth import logout as auth_logout
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -205,6 +207,40 @@ def add_product_ajax(request):
     new_product.save()
 
     return HttpResponse(b"CREATED", status=201)
+
+@csrf_exempt
+def add_product_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        name = strip_tags(data.get("name", ""))
+        price = data.get("price","")
+        stock = data.get("stock","")
+        description = strip_tags(data.get("description", ""))
+        category = data.get("category", "")
+        thumbnail = strip_tags(data.get("thumbnail"))
+        is_featured = data.get("is_featured", False)
+        player = strip_tags(data.get("player", ""))
+        club = strip_tags(data.get("club", ""))
+        user = request.user
+        
+        new_product = models.Product(
+            name=name, 
+            price=price,
+            stock=stock,
+            description=description,
+            category=category,
+            thumbnail=thumbnail,
+            is_featured=is_featured,
+            player=player,
+            club=club,
+            user=user
+        )
+        new_product.save()
+
+        return JsonResponse({"status:": "success"}, status=200)
+    
+    return JsonResponse({"status:": "error"}, status=401)
+    
 
 @csrf_exempt
 @require_POST
